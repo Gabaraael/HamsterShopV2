@@ -14,5 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {   
-    return view('welcome');
+    return view('home');
 });
+Route::get('/login', function () {   
+    return view('login');
+});
+
+
+Route::get('/roedor/cadastro', function () {   
+    return view('cadRoedor');
+});
+Route::get('/categoria/cadastro', function () {   
+    return view('cadCategoria');
+});
+Route::get('/usuario/cadastro', function () {   
+    return view('cadUsuario');
+});
+Route::get('/produto/cadastro', function () {   
+    return view('cadProduto');
+});
+
+
+Route::get('/produto/alterar', function () {   
+    return view('alterarProduto');
+});
+Route::get('/categoria/alterar', function () {   
+    return view('alterarCategoria');
+});
+Route::get('/roedor/alterar', function () {   
+    return view('alterarRoedor');
+});
+
