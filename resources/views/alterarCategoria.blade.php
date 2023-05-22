@@ -10,6 +10,6 @@
       <input type="categoria" class="form-control" id="inputCategoria4" placeholder="Categoria" name = "nome" value="">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Adicionar</button>
+  <button type="submit" class="btn btn-primary">Alterar</button>
 </form>
 @endsection

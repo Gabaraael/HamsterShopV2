@@ -11,7 +11,7 @@
       <input type="text" class="form-control" id="inputEspecie4" placeholder="Especie" name = "especie" value= "">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Adicionar</button>
+  <button type="submit" class="btn btn-primary">Alterar</button>
 </form>    
 </body>
 @endsection
