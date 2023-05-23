@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,18 +67,6 @@
         <li class="nav-item">
           <a class="nav-link" href="">Produtos</a>
         </li>
-        <?php 
-        //  $cadRoedor = APP . 'roedor/cadastrar';
-        //  $cadCategoria = APP . 'categoria/cadastrar';
-        //  $cadProduto = APP . 'produto/cadastrar';
-        //  $cadEstoque = APP . 'estoque/cadastrar';
-        //  $estoque = APP . 'estoque/listar';
-        //  echo (isset($_SESSION['logado']) && ($_SESSION['flg_admin'] == true) ? "<li class='nav-item'> <a class='nav-link' href='$cadRoedor'>Cadastar Roedor</a> </li>" : "");
-        // echo (isset($_SESSION['logado']) && ($_SESSION['flg_admin'] == true) ? "<li class='nav-item'> <a class='nav-link' href='$cadCategoria'>Cadastar Categoria</a> </li>" : "");
-        // echo (isset($_SESSION['logado']) && ($_SESSION['flg_admin'] == true) ? "<li class='nav-item'> <a class='nav-link' href='$cadProduto'>Cadastar Produto</a> </li>" : "");
-        // echo (isset($_SESSION['logado']) && ($_SESSION['flg_admin'] == true) ? "<li class='nav-item'> <a class='nav-link' href='$cadEstoque'>Cadastar Estoque</a> </li>" : "");
-        // echo (isset($_SESSION['logado']) && ($_SESSION['flg_admin'] == true) ? "<li class='nav-item'> <a class='nav-link' href='$estoque'>Estoque</a> </li>" : "");
-        ?>
       </ul>
       <!-- Left links -->
     </div>
@@ -90,18 +78,10 @@
       <a class="text-reset me-3" href="#">
         <?php
 
-        //   if (isset($_SESSION['cart'])) {
-        //     $count = (count(explode(',', $_SESSION['cart']))-1);
-        //     echo "<i class='bi bi-cart badge rounded-pill bg-danger' style='font-size: 30px'>$count</i>";
-        //   } else {
-        //     echo "<i class='bi bi-cart badge rounded-pill bg-danger' style='font-size: 30px'> </i>";
-        //   }
+
         ?>        
       </a>
-      <?php       
-            // $pathDeslogar = APP . 'usuario/deslogar';
-            // $pathLogar = APP . 'usuario/login';            
-            // echo (isset($_SESSION['logado']) ? "<a class='nav-link active' href='$pathDeslogar'>Usuário: {$_SESSION['username']} | Deslogar</a>" : "<a class='nav-link active' href='$pathLogar'>Logar</a>");         
+      <?php               
             ?>
     </div>
    
@@ -113,9 +93,7 @@
 <!-- Navbar -->
 <main class="container">
     <div class="p-5" id="border-main">
-      <?php
-    //   require_once $arquivo;
-      ?>
+    @yield('content')
     </div>
   </main>
   </body>
