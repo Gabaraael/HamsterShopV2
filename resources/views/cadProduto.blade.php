@@ -2,12 +2,18 @@
 
 @section('content')
 
-<form action = "" method = "POST">
+<form action = "" method = "POST" enctype="multipart/form-data">
 @csrf
   <div class="form-row">
     <div class="form-group col-md-6">
-    <div class="form-group col-md-4">
 
+
+    <div class="form-group col-md-4">
+      <label for="arquivo" class="form-label">Figura</label>
+      <input class="form-control" type="file" name="arquivo" accept="image/*">
+    </div>
+
+    <div class="form-group col-md-4">
       <label for="inputState">Tipo de roedor</label>
       <select name = "roedor_id" id="inputState" class="form-control">
       <option value="">rato</option>
