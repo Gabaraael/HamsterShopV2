@@ -24,9 +24,10 @@ Route::get('/login', function () {
 Route::get('/roedor/cadastro', function () {   
     return view('cadRoedor');
 });
-Route::get('/categoria/cadastro', function () {   
-    return view('cadCategoria');
-});
+
+Route::post('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@adicionar')->name("categoria.cadastro");
+Route::get('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@pagina')->name("categoria.listar");
+
 Route::get('/usuario/cadastro', function () {   
     return view('cadUsuario');
 });
