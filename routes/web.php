@@ -19,7 +19,9 @@ Route::get('/', function () {
 Route::get('/login', function () {   
     return view('login');
 });
-
+Route::get('/usuario/cadastro', function () {   
+    return view('cadUsuario');
+});
 
 Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar')->name("roedor.cadastro");
 Route::get('/roedor/cadastro', 'App\Http\Controllers\RoedorController@pagina')->name("roedor.view");
@@ -31,11 +33,9 @@ Route::get('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@pagi
 Route::get('/categoria/alterar', 'App\Http\Controllers\CategoriaController@listar')->name("categoria.listar");
 Route::put('/categoria/alterar', 'App\Http\Controllers\CategoriaController@alterar')->name("categoria.alterar");
 
-Route::get('/usuario/cadastro', function () {   
-    return view('cadUsuario');
-});
 
-Route::post('/produto/cadastro','App\Http\Controllers\ProdutoController@adicionar')->name("produto.cadastro");
+Route::post('/produto/cadastro','App\Http\Controllers\ProdutoController@adicionar')
+->name("produto.cadastro");
 Route::get('/produto/cadastro', 'App\Http\Controllers\ProdutoController@pagina')->name("produto.view");
 Route::get('/produto/alterar', 'App\Http\Controllers\ProdutoController@listar')->name("produto.listar");
 Route::put('/produto/alterar', 'App\Http\Controllers\ProdutoController@alterar')->name("produto.alterar");
