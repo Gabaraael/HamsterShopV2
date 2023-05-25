@@ -11,7 +11,7 @@
                                 <option selected value="-1">Selecione uma categoria</option>
                                 @foreach ($categoria as $cat)
                                     <option value="{{ $cat->id }}"
-                                        {{ $cat->id == $cat->categoria ? 'selected' : '' }}>
+                                        {{ $cat->id == $cat->categoria ? 'sel ected' : '' }}>
                                         {{ $cat->nome }}</option>
                                 @endforeach
                             </select>
