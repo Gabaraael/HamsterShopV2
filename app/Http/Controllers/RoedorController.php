@@ -13,11 +13,10 @@ class RoedorController extends Controller
 }
 
 function adicionar(Request $request) {
-    if ($request->input('id') == 0) {
-        $roedor = new Roedor();
-    } else {
-      $roedor = Roedor::find($request->input('id'));
-    }
+
+    $roedor = new Roedor();
+    $roedor = Roedor::find($request->input('id'));
+
     $roedor->especie = $request->input('especie');
     $roedor->save();
     return redirect('/roedor/cadastro');

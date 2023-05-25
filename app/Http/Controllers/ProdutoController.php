@@ -14,6 +14,7 @@ class ProdutoController extends Controller
 
         $roedor = Roedor::orderByRaw('id')->get();
         $categoria = Categoria::orderByRaw('id')->get();
+        
    
       return view('cadProduto', compact('roedor', 'categoria'));
 
@@ -46,32 +47,32 @@ class ProdutoController extends Controller
     }
     function alterar(Request $request) {
         $produto = Produto::find($request->input('produto'));
-       
-        $produto = new Produto();
-        $produto->roedor = $request->input('roedor_id');
+
         $produto->categoria_id = $request->input('categoria_id');
+        $produto->roedor_id = $request->input('roedor_id');
+
         $produto->nome = $request->input('nome');
         $produto->preco = $request->input('preco');
-        $produto->roedor_id = $request->input('roedor_id');
-        
-        $estoque = new Estoque();
+
+
         $estoque->quantidade = $request->input('quantidade');
         $estoque->save();
         $produto->estoque_id = $estoque->id;
 
         $produto->save();
     
-        return redirect('/produto$produto/alterar');
+        return redirect('/produto/alterar', compact('roedor', 'categoria'));
         //Retornar mensagem de sucesso
     }
     
     function listar() {
         
-        $produto = Produto::orderBy('especie')->get();
-        //Arrumar orderby
-        
-        return view('alterarProduto', compact('produto'));
-      }
+      $roedor = Roedor::orderByRaw('id')->get();
+      $categoria = Categoria::orderByRaw('id')->get();
+      $produto = Produto::orderBy('nome')->get();       
+      return view('alterarProduto', compact('produto', 'categoria', 'roedor'));
+
+    }
     
     public function deletar($id)
     {
