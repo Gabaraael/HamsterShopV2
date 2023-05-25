@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action = "" method = "POST" enctype="multipart/form-data">
+<form action = "{{ route('roedor.cadastro') }}" method = "POST" enctype="multipart/form-data">
 @csrf
   <div class="form-row">
     <div class="form-group col-md-6">

@@ -19,21 +19,36 @@ class CategoriaController extends Controller
         } else {
           $categoria = Categoria::find($request->input('id'));
         }
+        $categoria->nome = $request->input('nome');
         $categoria->save();
         return redirect('/categoria/cadastro');
+         //Retornar mensagem de sucesso
     }
 
-    function editar($id) {
-        $categoria = Categoria::find($id);
-        return view('alterarCategoria', compact('categoria'));
+    function alterar(Request $request) {
+        $categoria = Categoria::find($request->input('categoria'));
+       
+        $categoria->nome = $request->input('nome');
+        $categoria->save();
+
+        return redirect('/categoria/alterar');
+        //Retornar mensagem de sucesso
     }
+
+    function listar() {
+        
+        $categoria = Categoria::orderBy('nome')->get();
+        
+        return view('alterarCategoria', compact('categoria'));
+      }
 
     public function deletar($id)
     {
-        $categoria = Carro::find($id);
+        $categoria = Categoria::find($id);
         $categoria->delete();
 
         return redirect('/home');
+         //Retornar mensagem de sucesso
     }
 
 }

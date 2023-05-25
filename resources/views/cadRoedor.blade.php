@@ -3,7 +3,7 @@
 @section('content')
 
 <body>
-<form action = "" method = "POST">
+<form action = "{{ route('roedor.cadastro') }}" method = "POST">
 @csrf
   <div class="form-row">
     <div class="form-group col-md-6">
