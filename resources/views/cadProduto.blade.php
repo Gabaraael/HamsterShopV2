@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action = "{{ route('roedor.cadastro') }}" method = "POST" enctype="multipart/form-data">
+<form action = "{{ route('produto.cadastro') }}" method = "POST" enctype="multipart/form-data">
 @csrf
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -14,22 +14,28 @@
     </div>
 
     <div class="form-group col-md-4">
-      <label for="inputState">Tipo de roedor</label>
-      <select name = "roedor_id" id="inputState" class="form-control">
-      <option value="">rato</option>
+      <label for="roedor_id">Tipo de roedor</label>
+      <select name="roedor_id" class="form-select" aria-label="roedor_id">
+        <option selected value="-1">Selecione uma roedor</option>
+          @foreach ($roedor as $roed)
+                    <option value="{{ $roed->id }}">{{ $roed->especie }}</option>
+          @endforeach
       </select>
-    
+
     </div>
     <div class="form-group col-md-4">
-
       <label for="inputState">Categoria</label>
-      <select name = "categoria_id" id="inputState" class="form-control">
-      <option value="">racao</option>
-      </select>
-
+      <select name="categoria_id" class="form-select" aria-label="categoria">
+                                <option selected value="-1">Selecione uma categoria</option>
+                                @foreach ($categoria as $cat)
+                                    <option value="{{ $cat->id }}"
+                                        {{ $cat->id == $cat->categoria ? 'selected' : '' }}>
+                                        {{ $cat->nome }}</option>
+                                @endforeach
+                            </select>
     </div>
       <label for="inputDescricaol4">Nome do Produto</label>
-      <input type="text" class="form-control" id="inputDescricaol4" placeholder="Nome do produto" name = "descricao">
+      <input type="text" class="form-control" id="inputDescricaol4" placeholder="Nome do produto" name = "nome">
     </div>
 
     <div class="form-group col-md-6">

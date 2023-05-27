@@ -14,11 +14,10 @@ class CategoriaController extends Controller
     }
 
     function adicionar(Request $request) {
-        if ($request->input('id') == 0) {
-            $categoria = new Categoria();
-        } else {
-          $categoria = Categoria::find($request->input('id'));
-        }
+       
+        $categoria = new Categoria();
+        $categoria = Categoria::find($request->input('id'));
+     
         $categoria->nome = $request->input('nome');
         $categoria->save();
         return redirect('/categoria/cadastro');

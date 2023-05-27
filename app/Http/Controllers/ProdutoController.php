@@ -3,22 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Roedor;
+use App\Models\Categoria;
+use App\Models\Estoque;
+use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
-
-
-    //adicionar as rotas
     function pagina() {
-        return view('cadProduto');
+
+        $roedor = Roedor::orderByRaw('id')->get();
+        $categoria = Categoria::orderByRaw('id')->get();
+        
+   
+      return view('cadProduto', compact('roedor', 'categoria'));
+
     }
     
     function adicionar(Request $request) {
-        if ($request->input('id') == 0) {
-            $produto = new Produto();
-        } else {
-          $produto = Produto::find($request->input('id'));
-        }
+        
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $destinationPath = public_path('images');
@@ -26,31 +29,50 @@ class ProdutoController extends Controller
             $image->move($destinationPath, $imageName);
             $produto->image = $imageName;
           }
+          
+        $produto = new Produto();   
+        $produto->roedor_id = $request->input('roedor_id');
+        $produto->categoria_id = $request->input('categoria_id');
+        $produto->nome = $request->input('nome');
+        $produto->preco = $request->input('preco');
+        
+        $estoque = new Estoque();
+        $estoque->quantidade = $request->input('quantidade');
+        $estoque->save();
+        $produto->estoque_id = $estoque->id;
 
-        $produto->especie = $request->input('especie');
-        //terminar de adicionar as variaveis
         $produto->save();
-        return redirect('/roedor/cadastro');
+        return redirect('/produto/cadastro');
          //Retornar mensagem de sucesso
     }
     function alterar(Request $request) {
         $produto = Produto::find($request->input('produto'));
-       
-        $produto->especie = $request->input('especie');
-        //terminar
+
+        $produto->categoria_id = $request->input('categoria_id');
+        $produto->roedor_id = $request->input('roedor_id');
+
+        $produto->nome = $request->input('nome');
+        $produto->preco = $request->input('preco');
+
+
+        $estoque->quantidade = $request->input('quantidade');
+        $estoque->save();
+        $produto->estoque_id = $estoque->id;
+
         $produto->save();
     
-        return redirect('/produto$produto/alterar');
+        return redirect('/produto/alterar', compact('roedor', 'categoria'));
         //Retornar mensagem de sucesso
     }
     
     function listar() {
         
-        $produto = Produto::orderBy('especie')->get();
-        //Arrumar orderby
-        
-        return view('alterarProduto', compact('produto'));
-      }
+      $roedor = Roedor::orderByRaw('id')->get();
+      $categoria = Categoria::orderByRaw('id')->get();
+      $produto = Produto::orderBy('nome')->get();       
+      return view('alterarProduto', compact('produto', 'categoria', 'roedor'));
+
+    }
     
     public function deletar($id)
     {
