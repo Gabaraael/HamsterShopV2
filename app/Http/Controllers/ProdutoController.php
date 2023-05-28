@@ -50,18 +50,21 @@ class ProdutoController extends Controller
 
         $produto->categoria_id = $request->input('categoria_id');
         $produto->roedor_id = $request->input('roedor_id');
-
+        
         $produto->nome = $request->input('nome');
         $produto->preco = $request->input('preco');
+        
 
-
+        $estoque = Estoque::find($produto -> estoque_id);
         $estoque->quantidade = $request->input('quantidade');
         $estoque->save();
-        $produto->estoque_id = $estoque->id;
 
+        $produto->estoque_id = $estoque->id;
+        var_dump($request-> input('nome'));
+       
         $produto->save();
     
-        return redirect('/produto/alterar', compact('roedor', 'categoria'));
+        return redirect('/produto/alterar');
         //Retornar mensagem de sucesso
     }
     
@@ -72,6 +75,10 @@ class ProdutoController extends Controller
       $produto = Produto::orderBy('nome')->get();       
       return view('alterarProduto', compact('produto', 'categoria', 'roedor'));
 
+    }
+
+    function listarHome(){
+      
     }
     
     public function deletar($id)
