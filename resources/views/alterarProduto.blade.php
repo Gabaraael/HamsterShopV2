@@ -7,7 +7,7 @@
 @method('PUT')
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputDescricaol4">Nome do Produto</label>
+      <label for="inputDescricaol4">Produto Alterar</label>
       <select name="produto" class="form-select" aria-label="produto">
         <option selected value="-1">Selecione um produto para alterar</option>
           @foreach ($produto as $prod)
@@ -17,19 +17,15 @@
     </div>
 
     <div class="form-group col-md-4">
-
       <label for="inputState">Tipo de roedor</label>
       <select name="roedor_id" class="form-select" aria-label="roedor_id">
         <option selected value="-1">Selecione uma roedor</option>
           @foreach ($roedor as $roed)
                     <option value="{{ $roed->id }}">{{ $roed->especie }}</option>
           @endforeach
-      </select>
-      </select>
-    
+      </select>    
     </div>
     <div class="form-group col-md-4">
-
       <label for="inputState">Categoria</label>
       <select name="categoria_id" class="form-select" aria-label="categoria_id">
         <option selected value="-1">Selecione uma categoria</option>
@@ -37,7 +33,11 @@
             <option value="{{ $cat->id }}"{{ $cat->id == $cat->categoria ? 'selected' : '' }}>{{ $cat->nome }}</option>
           @endforeach
       </select>
+    </div>
 
+    </div class="form-group col-md-6" >
+      <label for="inputDescricaol4">Nome do Produto</label>
+      <input type="text" class="form-control" id="inputDescricaol4" placeholder="Nome do produto" name = "nome">
     </div>
 
     <div class="form-group col-md-6">
