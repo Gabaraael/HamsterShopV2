@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {   
-    return view('home');
-});
 Route::get('/login', function () {   
     return view('login');
 });
 Route::get('/usuario/cadastro', function () {   
     return view('cadUsuario');
 });
+
+Route::get('/', 'App\Http\Controllers\ProdutoController@listarHome')->name("roedor.home");
 
 Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar')->name("roedor.cadastro");
 Route::get('/roedor/cadastro', 'App\Http\Controllers\RoedorController@pagina')->name("roedor.view");
