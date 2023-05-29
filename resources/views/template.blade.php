@@ -76,13 +76,14 @@
     <div class="d-flex align-items-center">
       <!-- Icon -->
       <a class="text-reset me-3" href="#">
-        <?php
-
-
-        ?>        
-      </a>
-      <?php               
-            ?>
+      <?php       
+            // $pathDeslogar = APP . 'usuario/deslogar';
+            // $pathLogar = APP . 'usuario/login';            
+            // echo (isset($_SESSION['logado']) ? "<a class='nav-link active' href='$pathDeslogar'>Usuário: {$_SESSION['username']} | Deslogar</a>" : "<a class='nav-link active' href='$pathLogar'>Logar</a>");         
+            
+            ?>      
+            <a class='nav-link active' type="submit"  href="{{ route('login') }}">Logar</a>            
+      </a>  
     </div>
    
 
