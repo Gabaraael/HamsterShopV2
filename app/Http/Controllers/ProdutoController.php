@@ -78,7 +78,9 @@ class ProdutoController extends Controller
     }
 
     function listarHome(){
+      $produto = Produto::orderBy('nome')->get();  
       
+      return view('home', compact('produto'));
     }
     
     public function deletar($id)
