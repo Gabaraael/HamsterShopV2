@@ -13,16 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {   
-    return view('login');
-});
 Route::get('/usuario/cadastro', function () {   
     return view('cadUsuario');
 });
 
-Route::get('/', 'App\Http\Controllers\ProdutoController@listarHome')->name("roedor.home");
+Route::get('/login', 'App\Http\Controllers\LoginController@login') -> name('login');
 
-Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar')->name("roedor.cadastro");
+Route::get('/', function () {   
+    return view('home');
+});
+
+Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar') -> middleware('App\Http\Middleware\CheckAuth') ->name("roedor.cadastro");
 Route::get('/roedor/cadastro', 'App\Http\Controllers\RoedorController@pagina')->name("roedor.view");
 Route::get('/roedor/alterar', 'App\Http\Controllers\RoedorController@listar')->name("roedor.listar");
 Route::put('/roedor/alterar', 'App\Http\Controllers\RoedorController@alterar')->name("roedor.alterar");
@@ -33,12 +34,24 @@ Route::get('/categoria/alterar', 'App\Http\Controllers\CategoriaController@lista
 Route::put('/categoria/alterar', 'App\Http\Controllers\CategoriaController@alterar')->name("categoria.alterar");
 
 
-Route::post('/produto/cadastro','App\Http\Controllers\ProdutoController@adicionar')
-->name("produto.cadastro");
-Route::get('/produto/cadastro', 'App\Http\Controllers\ProdutoController@pagina')->name("produto.view");
-Route::get('/produto/alterar', 'App\Http\Controllers\ProdutoController@listar')->name("produto.listar");
-Route::put('/produto/alterar', 'App\Http\Controllers\ProdutoController@alterar')->name("produto.alterar");
 
+
+
+
+Route::get('/usuario/cadastro', function () {   
+    return view('cadUsuario');
+}) -> name("cadastraUsuario");
+
+Route::post('/usuario/cadastro', 'App\Http\Controllers\UsuarioController@cadastrar') -> name('criaUsuario');
+
+
+Route::get('/produto/cadastro', function () {   
+    return view('cadProduto');
+});
+
+Route::get('/produto/alterar', function () {   
+    return view('alterarProduto');
+});
 
 
 
