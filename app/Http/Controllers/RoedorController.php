@@ -18,7 +18,7 @@ function adicionar(Request $request) {
     $roedor = new Roedor();
     $roedor->especie = $request->input('especie');
     $roedor->save();
-    return redirect('/roedor/cadastro');
+    return redirect('/roedor/cadastro') -> with('alerta-info', 'Cadastrado com sucesso');
      //Retornar mensagem de sucesso
 }
 

@@ -72,4 +72,16 @@
         </div>
     </div>
 </div>
+
+@if(session('alerta-info'))
+    <div class="alert alert-info">
+        {{ session('alerta-info') }}
+    </div>
+@endif
+
+@if(session('alerta-danger'))
+    <div class="alert alert-danger">
+        {{ session('alerta-danger') }}
+    </div>
+@endif
 @endsection

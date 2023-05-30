@@ -23,7 +23,7 @@ class UsuarioController extends Controller
         session()->put('email', $usuario -> email);
         session()->put('admin', $usuario -> flg_admin);
 
-        return view('home');
+        return redirect()-> route('home');
     }
 }
 

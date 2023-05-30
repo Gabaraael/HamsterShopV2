@@ -18,7 +18,7 @@ Route::get('/login', 'App\Http\Controllers\LoginController@login') -> name('logi
 Route::post('/login', 'App\Http\Controllers\LoginController@logar') -> name('login');
 Route::get('/logout', 'App\Http\Controllers\LoginController@deslogar') -> name('deslogar');
 
-Route::get('/produto/listar/', 'App\Http\Controllers\ProdutoController@listarProduto') -> name('produto.listar');
+
 
 Route::get('/', 'App\Http\Controllers\produtoController@listarHome') -> name('home') ;
 
@@ -41,6 +41,7 @@ Route::get('/usuario/cadastro', function () {
 
 Route::post('/usuario/cadastro', 'App\Http\Controllers\UsuarioController@cadastrar') -> name('criaUsuario');
 
+Route::get('/produto/listar/', 'App\Http\Controllers\ProdutoController@listarProdutoPorEspecie') -> name('produto.listar.especie');
 
 Route::get('/produto/cadastro', 'App\Http\Controllers\ProdutoController@pagina')->name("produto.view");
 Route::post('/produto/cadastro', 'App\Http\Controllers\ProdutoController@adicionar')->name("produto.cadastro");

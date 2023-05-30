@@ -44,7 +44,7 @@ class ProdutoController extends Controller
         $produto->estoque_id = $estoque->id;
 
         $produto->save();
-        return redirect('/produto/cadastro');
+        return redirect('/produto/cadastro') -> with('alerta-info', 'Produto adicionado com sucesso');
          //Retornar mensagem de sucesso
     }
     function alterar(Request $request) {
@@ -71,7 +71,7 @@ class ProdutoController extends Controller
        
         $produto->save();
     
-        return redirect('/produto/alterar');
+        return redirect('/produto/alterar') -> with('alerta-info', 'Produto alterado com sucesso');
         //Retornar mensagem de sucesso
     }
     
@@ -91,10 +91,12 @@ class ProdutoController extends Controller
       return view('home', compact('produto'));
     }
 
-    function listarProduto(Request $request){
+    function listarProdutoPorEspecie(Request $request){
       
+
+     
        $especie = $request->input('especie');
-       $roedor = Roedor::where('especie', $especie) -> first();       
+       $roedor = Roedor::whereRaw('LOWER(especie) = ?', strtolower($especie))->first();
        $produto = Produto::where('roedor_id', $roedor -> id) -> get();
 
       

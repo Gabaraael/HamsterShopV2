@@ -42,10 +42,10 @@ $roedores = Roedor::orderBy('especie')->get();
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand --> 
-      <a class="navbar-brand mt-2 mt-lg-0">
+      <a class="navbar-brand mt-2 mt-lg-0" href="{{route('home')}}">
         <img
-          src="./../../assets/BlackWhiteHamster.svg"                       
-          alt="Hamster Logo"
+          src="{{ asset('images/BlackWhiteHamster.svg') }}"          
+          alt="Hamster Logo"          
           loading="lazy"          
           width= 120px
           height=120px;
@@ -102,7 +102,7 @@ $roedores = Roedor::orderBy('especie')->get();
       
         @foreach ($roedores as $roedor)
         @php
-        $listarProdutos = route('produto.listar', ['especie' => strtolower($roedor['especie'])]);  
+        $listarProdutos = route('produto.listar.especie', ['especie' => strtolower($roedor['especie'])]);  
         @endphp
         <li><a class="dropdown-item" href="{{ $listarProdutos }}">{{ ucfirst(strtolower($roedor['especie'])) }}</a></li>
         @endforeach
