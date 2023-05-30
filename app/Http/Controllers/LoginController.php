@@ -23,6 +23,7 @@ class LoginController extends Controller
             session()->put('logado', true);
             session()->put('login', $usuario -> nome);
             session()->put('email', $usuario -> email);
+            session()->put('admin', $usuario -> flg_admin);
           
             return  redirect()-> route('home') -> with('alerta', 'Login realizado com sucesso');
         }  else {
@@ -37,6 +38,7 @@ class LoginController extends Controller
         session()->put('logado', false);
         session()->put('login', '');
         session()->put('email', '');
+        session()->put('admin',false);
         return redirect()-> route('login');
     }
 }
