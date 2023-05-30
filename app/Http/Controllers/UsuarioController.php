@@ -21,6 +21,7 @@ class UsuarioController extends Controller
         session()->put('logado', true);
         session()->put('login', $usuario -> nome);
         session()->put('email', $usuario -> email);
+        session()->put('admin', $usuario -> flg_admin);
 
         return view('home');
     }

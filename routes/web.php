@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/usuario/cadastro', function () {   
-    return view('cadUsuario');
-});
 
 Route::get('/login', 'App\Http\Controllers\LoginController@login') -> name('login');
 Route::post('/login', 'App\Http\Controllers\LoginController@logar') -> name('login');
@@ -34,10 +31,7 @@ Route::post('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@adi
 Route::get('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@pagina')->name("categoria.view");
 Route::get('/categoria/alterar', 'App\Http\Controllers\CategoriaController@listar')->name("categoria.listar");
 Route::put('/categoria/alterar', 'App\Http\Controllers\CategoriaController@alterar')->name("categoria.alterar");
-
-
-
-
+Route::delete('/categoria/alterar', 'App\Http\Controllers\CategoriaController@deletar')->name("categoria.remover");
 
 
 Route::get('/usuario/cadastro', function () {   
@@ -47,13 +41,9 @@ Route::get('/usuario/cadastro', function () {
 Route::post('/usuario/cadastro', 'App\Http\Controllers\UsuarioController@cadastrar') -> name('criaUsuario');
 
 
-Route::get('/produto/cadastro', function () {   
-    return view('cadProduto');
-});
+Route::post('/produto/cadastro', 'App\Http\Controllers\ProdutoController@adicionar')->name("produto.cadastro");
+Route::get('/produto/cadastro', 'App\Http\Controllers\ProdutoController@pagina')->name("produto.view");
 
-Route::get('/produto/alterar', function () {   
-    return view('alterarProduto');
-});
 
 
 
