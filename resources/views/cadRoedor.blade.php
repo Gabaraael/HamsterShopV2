@@ -1,17 +1,26 @@
-@extends ('template')
+@extends('template')
 
 @section('content')
 
-<body>
-<form action = "{{ route('roedor.cadastro') }}" method = "POST">
-@csrf
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEspecie4">Especie</label>
-      <input type="text" class="form-control" id="inputEspecie4" placeholder="Especie" name = "especie" value= "">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cadastro de Roedor</h5>
+                    <form action="{{ route('roedor.cadastro') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="inputEspecie">Espécie</label>
+                            <input type="text" class="form-control" id="inputEspecie" placeholder="Espécie" name="especie" value="">
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Adicionar</button>
-</form>    
-</body>
+</div>
 @endsection

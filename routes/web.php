@@ -26,6 +26,7 @@ Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar
 Route::get('/roedor/cadastro', 'App\Http\Controllers\RoedorController@pagina')->name("roedor.view");
 Route::get('/roedor/alterar', 'App\Http\Controllers\RoedorController@listar')->name("roedor.listar");
 Route::put('/roedor/alterar', 'App\Http\Controllers\RoedorController@alterar')->name("roedor.alterar");
+Route::delete('/roedor/alterar', 'App\Http\Controllers\RoedorController@deletar')->name("roedor.remover");
 
 Route::post('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@adicionar')->name("categoria.cadastro");
 Route::get('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@pagina')->name("categoria.view");

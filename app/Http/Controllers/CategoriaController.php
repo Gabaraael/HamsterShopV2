@@ -30,7 +30,7 @@ class CategoriaController extends Controller
         $categoria->nome = $request->input('nome');
         $categoria->save();
 
-        return redirect('/categoria/alterar') -> with('alerta-info', 'Alterado com sucesso');;
+        return redirect('/categoria/alterar') -> with('alerta-info', 'Alterado com sucesso');
         //Retornar mensagem de sucesso
     }
 
@@ -40,7 +40,7 @@ class CategoriaController extends Controller
         $produtoExists = Produto::where('categoria_id', $categoria -> id)->exists();
 
         if(  $produtoExists) {
-            return redirect('/categoria/alterar') -> with('alerta-danger', 'Existe um produto com essa categoria');;
+            return redirect('/categoria/alterar') -> with('alerta-danger', 'Existe um produto com essa categoria');
         } else {
             $categoria->delete();
             return redirect('/categoria/alterar') -> with('alerta-info', 'Removido com sucesso');
