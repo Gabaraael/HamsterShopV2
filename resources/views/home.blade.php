@@ -13,6 +13,7 @@
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-car" style="font-size: 3rem"> </i>
                                     <div class="ms-3">
+                                        <img src="{{ asset('images/' . $prod->image_link) }}" alt="">
                                         <p class="fw-bold mb-1">
                                             {{ $prod->nome }}
                                         </p>
@@ -31,5 +32,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+</div> 
 @endforeach
 @endsection

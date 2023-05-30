@@ -22,20 +22,22 @@ class ProdutoController extends Controller
     
     function adicionar(Request $request) {
         
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $destinationPath = public_path('images');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
-            $produto->image = $imageName;
-          }
-          
         $produto = new Produto();   
         $produto->roedor_id = $request->input('roedor_id');
         $produto->categoria_id = $request->input('categoria_id');
         $produto->nome = $request->input('nome');
         $produto->preco = $request->input('preco');
-        
+
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $destinationPath = public_path('images');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+            $produto->image_link = $imageName;
+            
+          }
+          
         $estoque = new Estoque();
         $estoque->quantidade = $request->input('quantidade');
         $estoque->save();
@@ -79,7 +81,7 @@ class ProdutoController extends Controller
 
     function listarHome(){
       $produto = Produto::orderBy('nome')->get();  
-      
+
       return view('home', compact('produto'));
     }
     
