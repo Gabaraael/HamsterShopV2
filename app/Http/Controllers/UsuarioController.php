@@ -13,7 +13,7 @@ class UsuarioController extends Controller
         
         $usuario -> nome = $request -> nome;
         $usuario -> email = $request -> email;
-        $usuario -> senha = $request -> senha;
+        $usuario -> senha = md5($request -> senha);
         $usuario -> telefone = $request -> telefone;
         $usuario -> flg_admin = $request -> flg_admin;
      
