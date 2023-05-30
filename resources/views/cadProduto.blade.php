@@ -9,7 +9,7 @@
 
       <div class="form-group col-md-6">
         <label for="arquivo" class="form-label">Figura</label>
-        <input class="form-control" type="file" name="arquivo" accept="image/*">
+        <input class="form-control" type="file" name="image" accept="image/*">
       </div>
 
       <div class="form-group col-md-6">
@@ -50,5 +50,5 @@
   </div>
   <button type="submit" class="btn btn-primary">Adicionar</button>
 </form>
-@endsection
+  @endsection
 
