@@ -84,6 +84,17 @@ class ProdutoController extends Controller
 
       return view('home', compact('produto'));
     }
+
+    function listarProduto(Request $request){
+      
+       $especie = $request->input('especie');
+       $roedor = Roedor::where('especie', $especie) -> first();       
+       $produto = Produto::where('roedor_id', $roedor -> id) -> get();
+
+      
+      return view('home', compact('produto'));
+    }
+    
     
     public function deletar($id)
     {

@@ -18,6 +18,10 @@ Route::get('/usuario/cadastro', function () {
 });
 
 Route::get('/login', 'App\Http\Controllers\LoginController@login') -> name('login');
+Route::post('/login', 'App\Http\Controllers\LoginController@logar') -> name('login');
+Route::get('/logout', 'App\Http\Controllers\LoginController@deslogar') -> name('deslogar');
+
+Route::get('/produto/listar/', 'App\Http\Controllers\ProdutoController@listarProduto') -> name('produto.listar');
 
 Route::get('/', 'App\Http\Controllers\produtoController@listarHome') -> name('home') ;
 

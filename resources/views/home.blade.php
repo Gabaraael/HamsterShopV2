@@ -4,6 +4,11 @@
 @section('content')
 
 <div class="row text-black">
+@if(session('alerta'))
+    <div class="alert alert-info">
+        {{ session('alerta') }}
+    </div>
+@endif
 @csrf
 @foreach ($produto as $prod)
                 <div class="col-xl-4 mb-4">
