@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use App\Models\Produto;
 
 class CategoriaController extends Controller
 {
@@ -16,22 +17,34 @@ class CategoriaController extends Controller
     function adicionar(Request $request) {
        
         $categoria = new Categoria();
-        $categoria = Categoria::find($request->input('id'));
-     
         $categoria->nome = $request->input('nome');
         $categoria->save();
-        return redirect('/categoria/cadastro');
+        return redirect('/categoria/cadastro') -> with('alerta', 'Cadastrado com sucesso');
          //Retornar mensagem de sucesso
     }
 
     function alterar(Request $request) {
+      
         $categoria = Categoria::find($request->input('categoria'));
        
         $categoria->nome = $request->input('nome');
         $categoria->save();
 
-        return redirect('/categoria/alterar');
+        return redirect('/categoria/alterar') -> with('alerta-info', 'Alterado com sucesso');;
         //Retornar mensagem de sucesso
+    }
+
+    function deletar(Request $request) {
+        $categoria = Categoria::find($request->input('categoria'));
+
+        $produtoExists = Produto::where('categoria_id', $categoria -> id)->exists();
+
+        if(  $produtoExists) {
+            return redirect('/categoria/alterar') -> with('alerta-danger', 'Existe um produto com essa categoria');;
+        } else {
+            $categoria->delete();
+            return redirect('/categoria/alterar') -> with('alerta-info', 'Removido com sucesso');
+        }
     }
 
     function listar() {
@@ -40,14 +53,4 @@ class CategoriaController extends Controller
         
         return view('alterarCategoria', compact('categoria'));
       }
-
-    public function deletar($id)
-    {
-        $categoria = Categoria::find($id);
-        $categoria->delete();
-
-        return redirect('/home');
-         //Retornar mensagem de sucesso
-    }
-
 }

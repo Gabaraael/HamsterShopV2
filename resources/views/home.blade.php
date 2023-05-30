@@ -3,6 +3,12 @@
 
 @section('content')
 
+@if(session('alerta'))
+    <div class="alert alert-info">
+        {{ session('alerta') }}
+    </div>
+@endif
+
 <div class="row text-black">
     @csrf
     @foreach ($produto as $prod)

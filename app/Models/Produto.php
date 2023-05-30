@@ -24,6 +24,11 @@ class Produto extends Model
        return $this->belongsTo(Estoque::class);
     }
 
+    public function roedor()
+    {
+        return $this->belongsTo(Roedor::class);
+    }
+
 
 
 }

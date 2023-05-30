@@ -3,7 +3,7 @@
 
 @section('content')
 <div class='row'>
-  <form action="{{ route('login') }}" method="post" name="login" id="login">
+  <form action = "{{ route('roedor.alterar')}}" method="post" name="login" id="login">
 @csrf
     <div class="col-md-3 mb-1s">
       <label for="email" class="form-label">E-mail</label>
@@ -14,14 +14,8 @@
       <input class='form-control button-color' type="password" name="senha" value="" style="background-color: #F3EBFC">          
     </div>
 
-    <button class="btn btn-primary" type="submit" name="button">Entrar</button>
-    <a class="btn btn-dark" href="{{ route('cadastraUsuario') }}">Cadastrar</a>
-    @if(session('alerta'))
-    <div class="alert alert-danger">
-        {{ session('alerta') }}
-    </div>
-@endif
-
+    <button class="btn btn-primary" href="{{ route('entrar') }}" type="submit" name="button" >Entrar</button>
+    <a class="btn btn-primary" href="{{ route('cadastraUsuario') }}">Cadastrar</a>
   </form>
 </div>
 @endsection

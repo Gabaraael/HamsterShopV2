@@ -1,3 +1,9 @@
+@php
+use App\Models\Roedor;
+
+$roedores = Roedor::orderBy('especie')->get();
+@endphp
+
 <!doctype html>
 <html lang="en" >
 <head>
@@ -45,44 +51,86 @@
           height=120px;
         />
       </a>
-      <!-- Left links -->     
+
+      @if(session()->get('admin'))
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categoria
+          </a>          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">       
+  
+        <li><a class="dropdown-item" href="{{ route('categoria.cadastro') }}">Cadastrar categoria</a></li>
+        <li><a class="dropdown-item" href="{{ route('categoria.alterar') }}">Editar categoria</a></li>        
+          </ul>
+        </li>
+      </li>     
+
+
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Roedor
+          </a>          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">       
+  
+        <li><a class="dropdown-item" href="{{ route('roedor.cadastro') }}">Cadastrar roedor</a></li>
+        <li><a class="dropdown-item" href="{{ route('roedor.alterar') }}">Editar roedor</a></li>                    
+          </ul>
+        </li>
+      </li>   
+    
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Produto
+          </a>          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">       
+  
+        <li><a class="dropdown-item" href="">Cadastrar produto</a></li>
+        <li><a class="dropdown-item" href="">Editar produto</a></li>
+        <li><a class="dropdown-item" href="">Deletar produto</a></li>                     
+          </ul>
+        </li>
+      </li>       
+      </ul>
+      <!-- Left links -->
+    </div>
+      @else
+     <!-- Left links -->     
+     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Roedores
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-          
-          <?php               
-            // $roedor = new Roedor();
-            // $roedores = $roedor-> read();               
-            // $listarProdutos = APP . 'produto/listarprodutos';
-            // foreach ($roedores as $roedor) :              
-            // echo ("<li><a class='dropdown-item' href=" .($listarProdutos . "?especie=" . strtolower($roedor['especie'])) . ">"   . ucfirst(strtolower($roedor['especie'])) . "</a></li>");              
-            // endforeach;           
-          ?>               
+          </a>          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+               
+      
+      
+        @foreach ($roedores as $roedor)
+        @php
+        $listarProdutos = route('produto.listar', ['especie' => strtolower($roedor['especie'])]);  
+        @endphp
+        <li><a class="dropdown-item" href="{{ $listarProdutos }}">{{ ucfirst(strtolower($roedor['especie'])) }}</a></li>
+        @endforeach
+  
+                   
           </ul>
         </li>
       </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Produtos</a>
+          <a class="nav-link" href="{{ route('home') }}">Produtos</a>
         </li>
       </ul>
       <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->    
+    @endif
+     
 
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Icon -->
       <a class="text-reset me-3" href="#">
-      <?php       
-            // $pathDeslogar = APP . 'usuario/deslogar';
-            // $pathLogar = APP . 'usuario/login';            
-            // echo (isset($_SESSION['logado']) ? "<a class='nav-link active' href='$pathDeslogar'>Usuário: {$_SESSION['username']} | Deslogar</a>" : "<a class='nav-link active' href='$pathLogar'>Logar</a>");         
-            
-            ?>      
-            <a class='nav-link active' type="submit"  href="{{ route('login') }}">Logar</a>             
+      @if(session()->get('logado'))
+      <a class='nav-link active' type="submit"  href="{{ route('deslogar') }}">Deslogar</a>     
+      @else
+      <a class='nav-link active' type="submit"  href="{{ route('login') }}">Logar</a>     
+      @endif                      
       </a>  
     </div>
    

@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Usuario;
 
 class LoginController extends Controller
 {
-    public function listar()
-    {
-    }
-
+ 
     public function login()
     {        
 
@@ -18,22 +16,29 @@ class LoginController extends Controller
     
     public function logar(Request $request)
     {
-        $username = $request->input('username');
-        $senha = $request->input('password');
-        $usuario = Usuario::where('username', $username)->first();
-
-        if ($usuario && password_verify($senha, $usuario->password)) {
-            session(['logado' => $usuario]);
-            return redirect()->route('home');
-        } else {
-            return redirect()->route('login');
+      
+        $usuario = Usuario::where('email', $request ->input('email'))->first();
+      
+        if($usuario && $usuario -> senha == md5($request -> input('senha'))) {
+            session()->put('logado', true);
+            session()->put('login', $usuario -> nome);
+            session()->put('email', $usuario -> email);
+            session()->put('admin', $usuario -> flg_admin);
+          
+            return  redirect()-> route('home') -> with('alerta', 'Login realizado com sucesso');
+        }  else {
+            return redirect()-> route('login') -> with('alerta', 'Usuario ou senha incorretos');
         }
+     
     }
 
 
     public function deslogar()
     {
-        session(['logado' => null]);
-        return redirect()->route('login');
+        session()->put('logado', false);
+        session()->put('login', '');
+        session()->put('email', '');
+        session()->put('admin',false);
+        return redirect()-> route('login');
     }
 }
