@@ -48,7 +48,12 @@ class ProdutoController extends Controller
          //Retornar mensagem de sucesso
     }
     function alterar(Request $request) {
-        $produto = Produto::find($request->input('produto'));
+      $jsonString = $request->input('produto');
+      $produtoDecoded = json_decode($jsonString);   
+
+      $produto = Produto::find($produtoDecoded-> id);
+
+      
 
         $produto->categoria_id = $request->input('categoria_id');
         $produto->roedor_id = $request->input('roedor_id');
@@ -74,8 +79,9 @@ class ProdutoController extends Controller
         
       $roedor = Roedor::orderByRaw('id')->get();
       $categoria = Categoria::orderByRaw('id')->get();
+      $estoque = Estoque::orderByRaw('id')->get();
       $produto = Produto::orderBy('nome')->get();       
-      return view('alterarProduto', compact('produto', 'categoria', 'roedor'));
+      return view('alterarProduto', compact('produto', 'categoria', 'roedor', 'estoque'));
 
     }
 
