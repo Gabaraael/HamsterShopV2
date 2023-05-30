@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Roedor;
+use App\Models\Produto;
 
 class RoedorController extends Controller
 {
@@ -15,8 +16,6 @@ class RoedorController extends Controller
 function adicionar(Request $request) {
 
     $roedor = new Roedor();
-    $roedor = Roedor::find($request->input('id'));
-
     $roedor->especie = $request->input('especie');
     $roedor->save();
     return redirect('/roedor/cadastro');
@@ -29,7 +28,7 @@ function alterar(Request $request) {
     $roedor->especie = $request->input('especie');
     $roedor->save();
 
-    return redirect('/roedor/alterar');
+    return redirect('/roedor/alterar') -> with('alerta-info', 'Alterado com sucesso');
     //Retornar mensagem de sucesso
 }
 
@@ -40,12 +39,16 @@ function listar() {
     return view('alterarRoedor', compact('roedor'));
   }
 
-public function deletar($id)
-{
-    $roedor = Roedor::find($id);
-    $roedor->delete();
+  function deletar(Request $request) {
+    $roedor = Roedor::find($request->input('roedor'));
 
-    return redirect('/home');
-     //Retornar mensagem de sucesso
+    $produtoExists = Produto::where('roedor_id', $roedor -> id)->exists();
+
+    if(  $produtoExists) {
+        return redirect('/roedor/alterar') -> with('alerta-danger', 'Existe um produto com essa categoria');
+    } else {
+        $roedor->delete();
+        return redirect('/roedor/alterar') -> with('alerta-info', 'Removido com sucesso');
+    }
 }
 }

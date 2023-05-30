@@ -82,9 +82,8 @@ $roedores = Roedor::orderBy('especie')->get();
             Produto
           </a>          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">       
   
-        <li><a class="dropdown-item" href="">Cadastrar produto</a></li>
-        <li><a class="dropdown-item" href="">Editar produto</a></li>
-        <li><a class="dropdown-item" href="">Deletar produto</a></li>                     
+        <li><a class="dropdown-item" href="{{ route('produto.cadastro') }}">Cadastrar produto</a></li>
+        <li><a class="dropdown-item" href="{{ route('produto.alterar') }}">Editar produto</a></li>                            
           </ul>
         </li>
       </li>       

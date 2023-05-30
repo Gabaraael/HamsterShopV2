@@ -26,6 +26,7 @@ Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar
 Route::get('/roedor/cadastro', 'App\Http\Controllers\RoedorController@pagina')->name("roedor.view");
 Route::get('/roedor/alterar', 'App\Http\Controllers\RoedorController@listar')->name("roedor.listar");
 Route::put('/roedor/alterar', 'App\Http\Controllers\RoedorController@alterar')->name("roedor.alterar");
+Route::delete('/roedor/alterar', 'App\Http\Controllers\RoedorController@deletar')->name("roedor.remover");
 
 Route::post('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@adicionar')->name("categoria.cadastro");
 Route::get('/categoria/cadastro', 'App\Http\Controllers\CategoriaController@pagina')->name("categoria.view");
@@ -41,8 +42,13 @@ Route::get('/usuario/cadastro', function () {
 Route::post('/usuario/cadastro', 'App\Http\Controllers\UsuarioController@cadastrar') -> name('criaUsuario');
 
 
-Route::post('/produto/cadastro', 'App\Http\Controllers\ProdutoController@adicionar')->name("produto.cadastro");
 Route::get('/produto/cadastro', 'App\Http\Controllers\ProdutoController@pagina')->name("produto.view");
+Route::post('/produto/cadastro', 'App\Http\Controllers\ProdutoController@adicionar')->name("produto.cadastro");
+
+Route::get('/produto/alterar', 'App\Http\Controllers\ProdutoController@listar')->name("produto.listar");
+Route::put('/produto/alterar', 'App\Http\Controllers\ProdutoController@alterar')->name("produto.alterar");
+Route::delete('/produto/alterar', 'App\Http\Controllers\ProdutoController@deletar')->name("produto.remover");
+
 
 
 
