@@ -14,7 +14,7 @@
       <input class='form-control button-color' type="password" name="senha" value="" style="background-color: #F3EBFC">          
     </div>
 
-    <button class="btn btn-dark" type="submit" name="button" >Entrar</button>
+    <button class="btn btn-primary" type="submit" name="button" >Entrar</button>
     <a class="btn btn-dark" href="{{ route('cadastraUsuario') }}">Cadastrar</a>
   </form>
 </div>

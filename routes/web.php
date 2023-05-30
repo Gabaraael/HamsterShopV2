@@ -19,9 +19,7 @@ Route::get('/usuario/cadastro', function () {
 
 Route::get('/login', 'App\Http\Controllers\LoginController@login') -> name('login');
 
-Route::get('/', function () {   
-    return view('home');
-});
+Route::get('/', 'App\Http\Controllers\produtoController@listarHome') -> name('home') ;
 
 Route::post('/roedor/cadastro', 'App\Http\Controllers\RoedorController@adicionar') -> middleware('App\Http\Middleware\CheckAuth') ->name("roedor.cadastro");
 Route::get('/roedor/cadastro', 'App\Http\Controllers\RoedorController@pagina')->name("roedor.view");
