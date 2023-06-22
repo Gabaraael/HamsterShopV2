@@ -68,4 +68,4 @@ INSERT INTO categoria(nome) VALUES ('Forragem');
 INSERT INTO categoria(nome) VALUES ('Acessórios');
 INSERT INTO categoria(nome) VALUES ('Higiene')
  
-
+INSERT INTO USUARIO(flg_admin, nome, telefone, senha, email) VALUES (true, 'admin', '67992381165', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com');
