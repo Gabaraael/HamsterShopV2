@@ -15,7 +15,7 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (null == (session()->get('logado'))){
+        if (null == (session()->get('logado') && session()->get('flg_admin'))){
             return redirect()->route('login');
         }
         return $next($request);
