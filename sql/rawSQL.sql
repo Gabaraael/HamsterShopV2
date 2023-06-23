@@ -8,7 +8,7 @@ CREATE TABLE USUARIO(
 );
 
 CREATE TABLE ORDEM_COMPRA (
-	id BIGSERIAL PRIMARY KEY,	
+	id BIGSERIAL PRIMARY KEY,
 	data_compra TIMESTAMP DEFAULT CURRENT_DATE,
 	usuario_id BIGINT NOT NULL,
 	constraint fk_usuario foreign key (usuario_id) references usuario (id)
@@ -27,7 +27,7 @@ create table CATEGORIA (
 
 create table ROEDOR (
 	id BIGSERIAL PRIMARY KEY,
-	especie VARCHAR NOT NULL	
+	especie VARCHAR NOT NULL
 );
 
 CREATE TABLE PRODUTO (
@@ -36,7 +36,7 @@ CREATE TABLE PRODUTO (
 	nome VARCHAR NOT NULL,
 	image_link VARCHAR,
 	roedor_id BIGINT NOT NULL,
-	estoque_id BIGINT NOT NULL,	
+	estoque_id BIGINT NOT NULL,
 	categoria_id BIGINT NOT NULL,
 	constraint fk_roedor foreign key (roedor_id) references roedor (id),
 	constraint fk_estoque foreign key (estoque_id) references estoque (id),
@@ -46,11 +46,11 @@ CREATE TABLE PRODUTO (
 
 CREATE TABLE ORDEM_COMPRA_PRODUTO (
 	quantidade BIGINT NOT NULL DEFAULT 0,
-	ordem_compra_id BIGINT NOT NULL,	
+	ordem_compra_id BIGINT NOT NULL,
 	produto_id BIGINT NOT NULL,
 	constraint fk_ordem_compra foreign key (ordem_compra_id) references ordem_compra (id),
 	constraint fk_produto foreign key (produto_id) references produto (id)
-)
+);
 
 
 INSERT INTO ROEDOR (especie) VALUES ('Coelho');
@@ -66,6 +66,6 @@ INSERT INTO ESTOQUE(quantidade) VALUES ('15');
 INSERT INTO categoria(nome) VALUES ('Ração');
 INSERT INTO categoria(nome) VALUES ('Forragem');
 INSERT INTO categoria(nome) VALUES ('Acessórios');
-INSERT INTO categoria(nome) VALUES ('Higiene')
- 
+INSERT INTO categoria(nome) VALUES ('Higiene');
+
 INSERT INTO USUARIO(flg_admin, nome, telefone, senha, email) VALUES (true, 'admin', '67992381165', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com');
