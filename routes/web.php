@@ -35,7 +35,7 @@ Route::put('/categoria/alterar', 'App\Http\Controllers\CategoriaController@alter
 Route::delete('/categoria/alterar', 'App\Http\Controllers\CategoriaController@deletar')-> middleware('App\Http\Middleware\CheckAuth') ->name("categoria.remover");
 
 
-Route::get('/usuario/cadastro', function () {   
+Route::get('/usuario/cadastro', function () {
     return view('cadUsuario');
 }) -> name("cadastraUsuario");
 
@@ -49,6 +49,7 @@ Route::post('/produto/cadastro', 'App\Http\Controllers\ProdutoController@adicion
 Route::get('/produto/alterar', 'App\Http\Controllers\ProdutoController@listar')  -> middleware('App\Http\Middleware\CheckAuth') ->name("produto.listar");
 Route::put('/produto/alterar', 'App\Http\Controllers\ProdutoController@alterar') -> middleware('App\Http\Middleware\CheckAuth') ->name("produto.alterar");
 Route::delete('/produto/alterar', 'App\Http\Controllers\ProdutoController@deletar')  -> middleware('App\Http\Middleware\CheckAuth') ->name("produto.remover");
+Route::get('/produto/relatorio', 'App\Http\Controllers\ProdutoController@relatorio')  -> middleware('App\Http\Middleware\CheckAuth') ->name("produto.relatorio");
 
 
 
